@@ -152,13 +152,11 @@ class Siswa extends CI_Controller
         $this->template_siswa->views('siswa/berhasil_uploadpembayaran');
     }
 
-    public function search_pembayaran()
+    public function search_pembayaran($nasabah, $nama_siswa)
     {
-        // $nasabah = $this->uri->segment(3);
-        // $data['pembayaran'] = $this->db->query("SELECT * from tb_pembayaran where nasabah = '$nasabah'")->result();
-        $this->db->where('nasabah', '$nasabah');
-        $this->db->where('nama_siswa', '$nama_siswa');
-        $data['pembayaran'] = $this->Pembayaran_model->get_pembayaran()->result();
+        $where = array('nasabah' => $nasabah);
+        $where = array('nama_siswa' => $nama_siswa);
+        $data['pembayaran'] = $this->Pembayaran_model->get_pembayaran($where, 'tb_pembayaran')->result();
         $this->template_siswa->views('siswa/v_konfirm_pembayaran', $data);
     }
 
@@ -166,15 +164,6 @@ class Siswa extends CI_Controller
     {
         $this->template_siswa->views('siswa/konfirm_pembayaran');
     }
-
-    // public function view_konfirm_pembayaran($id)
-    // {
-    //     // $where = array('id' => $id);
-    //     $data['pembayaran'] = $this->Pembayaran_model->get_pembayaran('tm_pembayaran')->result();
-    //     $this->template_siswa->views('siswa/v_konfirm_pembayaran', $data);
-    // }
-
-
 
     //FUNCTION MENU BIODATA
     public function biodata()
