@@ -10,15 +10,9 @@ class Pembayaran_model extends CI_Model
         return $query;
     }
 
-    public function get_pembayaran()
+    public function get_pembayaran($table, $where)
     {
-        $this->db->select('*');
-        $this->db->from('tb_pembayaran');
-        $this->db->where('nasabah', '$nasabah');
-        $this->db->where('nama_siswa', '$nama_siswa');
-        $query = $this->db->get();
-        return $query;
-        // return $this->db->get_where($where);
+        return $this->db->get_where($table, $where);
     }
 
     public function input_data($data, $table)
